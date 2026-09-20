@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>静默域</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/state.js" defer></script>
+  <script src="js/bot.js" defer></script>
+  <script src="js/chat.js" defer></script>
+  <script src="js/record-viewer.js" defer></script>
+  <script src="js/calibration.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/ending.js" defer></script>
+</head>
+<body>
+  <div class="workspace" id="workspace">
+  <main class="app" aria-label="聊天软件界面预览">
+    <aside class="sidebar">
+      <div class="list-heading"><h1>消息</h1><span>3 个会话</span></div>
+      <nav id="conversations" aria-label="会话列表"></nav>
+    </aside>
+    <section class="chat" aria-labelledby="chat-title">
+      <header class="chat-header"><div><h2 id="chat-title"></h2><p id="chat-status"></p></div></header>
+      <div id="messages" class="messages" role="region" aria-label="聊天历史" tabindex="0"></div>
+      <section class="composer" aria-label="消息输入区">
+        <textarea id="message-input" placeholder="写点什么……" aria-label="消息输入框" aria-describedby="composer-note" rows="3"></textarea>
+        <div class="composer-footer"><p id="composer-note">静态界面预览 · 暂不支持发送消息</p><button class="send" type="button" disabled>发送 <span aria-hidden="true">↗</span></button></div>
+      </section>
+    </section>
+  </main>
+  <aside id="calibration-panel" class="calibration-panel" aria-labelledby="calibration-target" hidden>
+    <header class="calibration-header">
+      <h2 id="calibration-target">校准对象：未指定</h2>
+      <p id="calibration-count" role="status" hidden></p>
+      <p id="calibration-keyword-hint" class="calibration-keyword-hint" hidden></p>
+    </header>
+    <div id="calibration-records" class="calibration-records" aria-label="已添加的校准记录"></div>
+    <footer id="calibration-actions" class="calibration-actions" hidden>
+      <p id="calibration-feedback" role="status"></p>
+      <button id="calibration-initialize" type="button">初始化校准</button>
+      <button id="calibration-execute" type="button" hidden disabled>执行校准</button>
+    </footer>
+  </aside>
+  </div>
+  <dialog id="record-viewer" class="record-viewer" aria-labelledby="record-viewer-title" aria-describedby="record-viewer-meta">
+    <header class="record-viewer-header">
+      <div><h2 id="record-viewer-title"></h2><p id="record-viewer-meta"></p></div>
+      <button id="record-viewer-close" class="record-viewer-close" type="button" aria-label="关闭资料查看器" autofocus>关闭</button>
+    </header>
+    <div id="record-viewer-content" class="record-viewer-content" role="region" aria-label="资料记录" tabindex="0"></div>
+  </dialog>
+</body>
+</html>

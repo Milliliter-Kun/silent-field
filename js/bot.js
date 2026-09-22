@@ -28,11 +28,12 @@ window.chatBot = (() => {
       if (argument === "--list") return "1. 好想吃大餐/猪宝\n2. 错误：成员状态不支持读取\n3. 错误：成员状态不支持读取\n4. 错误：成员状态不支持读取\n5. 错误：成员状态不支持读取";
       const member = members.find(item => item.aliases.includes(argument));
       if (!member) return `未找到成员「${argument}」。`;
-      if (member.id !== "ding" || !window.chatSession.restoredMembers.ding) return `已找到成员[${argument}]\n错误：成员状态不支持读取`;
+      if (member.id !== "ding" ) return `已找到成员[${argument}]\n错误：成员状态不支持读取`;
+      if (!window.chatSession.restoredMembers.ding) return `已找到成员[${argument}]\n错误：成员数据不完整`;
       return window.botData.members.find(item => item.aliases.includes("猪宝")).text;
     },
     "/restore": argument => {
-      if (!argument) return "用法：/restore <群昵称或用户名>，例如 /restore 鹅宝";
+      if (!argument) return "用法：/restore <群昵称或用户名>";
       const member = members.find(item => item.aliases.includes(argument));
       if (!member) return `未找到成员「${argument}」。`;
       if (window.chatSession.restoringMembers.includes(member.id)) return "该对象的记录正在恢复，请稍候。";
@@ -54,7 +55,7 @@ window.chatBot = (() => {
       return { type: "calibration-action", action: "target", memberId: "ding" };
     },
     "/search": argument => {
-      if (!argument) return "用法：/search <索引>，例如 /search 图书馆";
+      if (!argument) return "用法：/search <索引>";
       const index = window.botData.indexes.find(item => item.aliases.includes(argument));
       if (!index) return `未找到索引「${argument}」。`;
       return index.recordSetId
